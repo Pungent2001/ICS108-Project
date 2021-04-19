@@ -28,7 +28,6 @@ public class Project extends Application {
         nextPrev.setAlignment(Pos.BOTTOM_CENTER);
 
         mainPane.getChildren().addAll(nextPrev);
-
     }
 
     public static void main(String[] args) {
