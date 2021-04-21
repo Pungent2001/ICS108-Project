@@ -6,6 +6,7 @@ public class Edit {
     BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Button btnMenu = new Button("Main menu");
+
     public Edit() {
         pane.setBottom(btnMenu);
     }
