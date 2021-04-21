@@ -42,6 +42,7 @@ public class Project extends Application {
         // Main menu button handler for each object's menu button
         (objView.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
         (objEdit.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
+        (objAdd.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
 
         // Handling mainScene buttons
         btnView.setOnAction(e -> primaryStage.setScene(objView.scene));
