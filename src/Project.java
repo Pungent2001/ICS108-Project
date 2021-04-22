@@ -15,8 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Project extends Application implements Serializable{
-	public static ArrayList<Question> questions = new ArrayList<Question>();
-    @SuppressWarnings("unchecked")
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 352190495009038584L;
+	public ArrayList<Question> questions = new ArrayList<Question>();
 	public void start(Stage primaryStage) {
         //
         // Window set-up
@@ -64,31 +67,38 @@ public class Project extends Application implements Serializable{
         btnEdit.setOnAction(e -> primaryStage.setScene(objEdit.scene));
         btnAdd.setOnAction(e -> primaryStage.setScene(objAdd.scene));
         btnDelete.setOnAction(e -> primaryStage.setScene(objDelete.scene));
-        primaryStage.setOnCloseRequest(e->{
-        	try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("questions.dat", true))) {  
-  		      output.writeObject(questions);
-  		      output.close();
-  		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+        primaryStage.setOnShowing(e -> {
+        	ReadBinary();
         });
-        primaryStage.setOnShowing(e->{
-        	try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("questions.dat"))) {
-        		      questions = (ArrayList<Question>)(input.readObject());
-        		      input.close();
-        		      
-        } catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}});
+        primaryStage.setOnCloseRequest(e -> {
+        	WriteBinary();
+        });
+        
+       
     }
+	public void ReadBinary() {
+        try {
+             FileInputStream fileInputStream = new FileInputStream("QuestionBank.dat");
+             ObjectInputStream objStream = new ObjectInputStream(fileInputStream);
+             
+             questions = (ArrayList<Question>) objStream.readObject();
+             objStream.close();
+    
+        }catch(Exception e) {
+        	System.out.println("Input Filed");
+        }
+    }
+    public void WriteBinary() {
+        try {
+            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream("QuestionBank.dat"));
+            
+               writer.writeObject(questions);
+               writer.close();
+            }
+        catch(Exception e) {
+        	System.out.println("Output failed");
+        }
+}
 	    
     public static void main(String[] args) {
         System.out.println("Launching...");

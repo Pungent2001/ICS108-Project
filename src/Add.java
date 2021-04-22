@@ -77,12 +77,12 @@ public class Add extends Project{
         	} else if(a4.isSelected()) {
         		answer = t4.getText();
         	}
+        	answerGroup.getSelectedToggle().setSelected(false);
         	t1.setText("");
         	t2.setText("");
         	t3.setText("");
         	t4.setText("");
-        	Question objQuestion = new Question(question, choices, answer);
-        	questions.add(objQuestion);
+        	questions.add(new Question(question, choices, answer));
         	System.out.println(questions);
 		});
         

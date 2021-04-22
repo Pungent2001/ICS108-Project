@@ -2,7 +2,11 @@ import java.io.Serializable;
 
 public class Question implements Serializable{
 
-    String qText;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2560824236771284773L;
+	String qText;
     String[] answers = new String[4];
     String correctAnswer;
 
