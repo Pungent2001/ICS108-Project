@@ -1,3 +1,7 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -52,7 +56,31 @@ public class Add {
 
         pane.setRight(btnAdd);
         btnAdd.setAlignment(Pos.CENTER_RIGHT);
-
+        btnAdd.setOnAction(e->{
+        	String question = questionText.getText();
+        	String answer = "";//Check later(if answers are bugged)
+        	questionText.setText("");
+        	String[] choices = {
+        			t1.getText(), 
+        			t2.getText(), 
+        			t3.getText(), 
+        			t4.getText()
+        			};
+        	if (a1.isSelected()) {
+        		answer = t1.getText();
+        	} else if(a2.isSelected()){
+        		answer = t2.getText();
+        	} else if(a3.isSelected()) {
+        		answer = t3.getText();
+        	} else if(a4.isSelected()) {
+        		answer = t4.getText();
+        	}
+        	t1.setText("");
+        	t2.setText("");
+        	t3.setText("");
+        	t4.setText("");
+        	Question objQuestion = new Question(question, choices, answer);
+			//Add binary write
+		});
     }
-
 }

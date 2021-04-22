@@ -5,13 +5,15 @@ public class Question {
     String[] answers = new String[4];
     String correctAnswer;
 
-    public void question(String qText, String[] answers, String correctAnswer) {
+
+
+	public Question(String qText, String[] answers, String correctAnswer) {
         this.qText = qText;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
     }
 
-    public void setQText(String qText, String[] answers, String correctAnswer) {
+    public void edit(String qText, String[] answers, String correctAnswer) {
         this.qText = qText;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
