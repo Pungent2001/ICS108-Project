@@ -5,9 +5,7 @@ public class Question {
     String[] answers = new String[4];
     String correctAnswer;
 
-
-
-	public Question(String qText, String[] answers, String correctAnswer) {
+    public Question(String qText, String[] answers, String correctAnswer) {
         this.qText = qText;
         this.answers = answers;
         this.correctAnswer = correctAnswer;

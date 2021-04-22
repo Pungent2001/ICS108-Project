@@ -50,6 +50,7 @@ public class Edit {
         questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4);
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
+        questionGroup.setTranslateX(50);
 
         pane.setRight(btnEdit);
         btnEdit.setAlignment(Pos.CENTER_RIGHT);

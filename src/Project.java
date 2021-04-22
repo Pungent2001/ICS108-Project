@@ -21,6 +21,7 @@ public class Project extends Application {
         View objView = new View();
         Edit objEdit = new Edit();
         Add objAdd = new Add();
+        Delete objDelete = new Delete();
 
         // Buttons
         Button btnView = new Button("View a question");
@@ -43,22 +44,16 @@ public class Project extends Application {
         (objView.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
         (objEdit.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
         (objAdd.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
+        (objDelete.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
 
         // Handling mainScene buttons
         btnView.setOnAction(e -> primaryStage.setScene(objView.scene));
-
-        btnEdit.setOnAction(e -> {
-            primaryStage.setScene(objEdit.scene); // Note to self: Change eScene to scene.
-        });
-
-        btnAdd.setOnAction(e -> {
-            primaryStage.setScene(objAdd.scene); // Note to self: Read the previous not to self.
-        });
+        btnEdit.setOnAction(e -> primaryStage.setScene(objEdit.scene));
+        btnAdd.setOnAction(e -> primaryStage.setScene(objAdd.scene));
+        btnDelete.setOnAction(e -> primaryStage.setScene(objDelete.scene));
 
     }
-
-
-
+    
     public static void main(String[] args) {
         System.out.println("Launching...");
         launch(args);
