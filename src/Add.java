@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class Add {
+public class Add extends Project{
     BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Button btnMenu = new Button("Main menu");
@@ -54,6 +54,7 @@ public class Add {
         questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4);
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
+        questionGroup.setTranslateX(50);
 
         pane.setRight(btnAdd);
         btnAdd.setAlignment(Pos.CENTER_RIGHT);
@@ -81,7 +82,9 @@ public class Add {
         	t3.setText("");
         	t4.setText("");
         	Question objQuestion = new Question(question, choices, answer);
-			//Add binary write
+        	questions.add(objQuestion);
+        	System.out.println(questions);
 		});
+        
     }
 }

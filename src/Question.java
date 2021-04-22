@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Question {
+public class Question implements Serializable{
 
     String qText;
     String[] answers = new String[4];

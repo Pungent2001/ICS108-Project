@@ -1,3 +1,11 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -6,11 +14,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Project extends Application {
-    public void start(Stage primaryStage) {
+public class Project extends Application implements Serializable{
+	public static ArrayList<Question> questions = new ArrayList<Question>();
+    @SuppressWarnings("unchecked")
+	public void start(Stage primaryStage) {
         //
         // Window set-up
         //
+    	FileOutputStream out = null;
+    	ObjectOutputStream objWrite = null;
+    	
         BorderPane mainPane = new BorderPane();
         Scene mainScene = new Scene(mainPane, 525, 500); // Change the size later
         primaryStage.setTitle("ICS108 Project");
@@ -51,9 +64,32 @@ public class Project extends Application {
         btnEdit.setOnAction(e -> primaryStage.setScene(objEdit.scene));
         btnAdd.setOnAction(e -> primaryStage.setScene(objAdd.scene));
         btnDelete.setOnAction(e -> primaryStage.setScene(objDelete.scene));
-
+        primaryStage.setOnCloseRequest(e->{
+        	try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("questions.dat", true))) {  
+  		      output.writeObject(questions);
+  		      output.close();
+  		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        });
+        primaryStage.setOnShowing(e->{
+        	try (ObjectInputStream input = new ObjectInputStream(new FileInputStream("questions.dat"))) {
+        		      questions = (ArrayList<Question>)(input.readObject());
+        		      input.close();
+        		      
+        } catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}});
     }
-    
+	    
     public static void main(String[] args) {
         System.out.println("Launching...");
         launch(args);
