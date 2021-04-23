@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -160,6 +161,10 @@ public class Project extends Application implements Serializable {
             writer.close();
         }catch(Exception e) {
         }    
+    }
+    
+    public String clean(TextField tf) {
+    	return tf.getText().replace(" ", "");
     }
 	    
     public static void main(String[] args) {

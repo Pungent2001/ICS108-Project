@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class Add extends Project{
+public class Add extends Project {
     /**
 	 * 
 	 */
@@ -117,7 +117,5 @@ public class Add extends Project{
         
     }
     
-    public String clean(TextField tf) {
-    	return tf.getText().replace(" ", "");
-    }
+
 }

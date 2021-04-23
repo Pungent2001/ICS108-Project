@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class Edit extends Project{
+public class Edit extends Project {
     /**
 	 * 
 	 */
@@ -89,30 +89,33 @@ public class Edit extends Project{
         btnEdit.setOnAction(e -> {
         	String[] tempAnsArray = {t1.getText(), t2.getText(), t3.getText(), t4.getText()};
         	String correctAnswer = null;
+        	boolean questionIsEmpty = clean(questionText).equals("") || clean(t1).equals("") || clean(t2).equals("") || clean(t3).equals("") || clean(t4).equals("");
         	lblEditNotice.setTextFill(Color.GREEN);
         	
-        	if (a1.isSelected()) {
-        		correctAnswer = t1.getText();
-        		lblEditNotice.setText("Question has been edited");
-            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
-        	}
-        	else if (a2.isSelected()) {
-        		correctAnswer = t2.getText();
-        		lblEditNotice.setText("Question has been edited");
-            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
-        	}
-        	else if (a3.isSelected()) {
-        		correctAnswer = t3.getText();
-        		lblEditNotice.setText("Question has been edited");
-            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
-        	}
-        	else if (a4.isSelected()) {
-        		correctAnswer = t4.getText();
-        		lblEditNotice.setText("Question has been edited");
-            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+        	if (!(answerGroup.getSelectedToggle() == null) && !questionIsEmpty) {
+            	if (a1.isSelected()) {
+            		correctAnswer = t1.getText();
+            		lblEditNotice.setText("Question has been edited");
+                	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+            	}
+            	else if (a2.isSelected()) {
+            		correctAnswer = t2.getText();
+            		lblEditNotice.setText("Question has been edited");
+                	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+            	}
+            	else if (a3.isSelected()) {
+            		correctAnswer = t3.getText();
+            		lblEditNotice.setText("Question has been edited");
+                	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+            	}
+            	else if (a4.isSelected()) {
+            		correctAnswer = t4.getText();
+            		lblEditNotice.setText("Question has been edited");
+                	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+            	}
         	}
         	else {
-        		lblEditNotice.setText("Please set a correct answer");
+        		lblEditNotice.setText("The question is not complete!");
         		lblEditNotice.setTextFill(Color.RED);
         	}
         });
