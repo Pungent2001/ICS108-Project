@@ -27,6 +27,9 @@ public class Project extends Application implements Serializable{
         //
         // Window set-up
         //
+		if (questions == null) {
+			questions = new ArrayList<Question>();
+		}
 		primaryStage.setOnShown(e -> readBinary());
 		//String[] removed = {"1","2","3","4"};
 		//questions.add(new Question("Empty",removed,"1"));

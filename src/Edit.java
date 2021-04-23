@@ -8,11 +8,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class Edit {
-    BorderPane pane = new BorderPane();
+public class Edit extends Project{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Button btnMenu = new Button("Main menu");
-
+    Integer index = 0;
     Button btnEdit = new Button("Edit");
 
     TextField questionText = new TextField();
@@ -34,6 +38,13 @@ public class Edit {
     VBox questionGroup = new VBox(20);
 
     public Edit() {
+    	if (questions.size()>1) {
+    		questionText.setText(questions.get(0).getQuestionText());
+    		t1.setText((questions.get(0).getAnswers())[0]);
+    		t2.setText((questions.get(0).getAnswers())[1]);
+    		t3.setText((questions.get(0).getAnswers())[2]);
+    		t4.setText((questions.get(0).getAnswers())[3]);
+    	}
         pane.setBottom(btnMenu);
 
         // Grouping radio buttons
