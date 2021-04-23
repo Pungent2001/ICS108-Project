@@ -1,6 +1,7 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -8,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class View extends Project{
+public class View extends Project {
     /**
 	 * 
 	 */
@@ -22,12 +23,12 @@ public class View extends Project{
     Button btnPrev = new Button("Previous");
 
     // Question stuff
-    Text questionText = new Text("Sample Text"); // 420 MLG no scope blaze it
-    RadioButton a1 = new RadioButton("One");
-    RadioButton a2 = new RadioButton("Two");
-    RadioButton a3 = new RadioButton("Three");
-    RadioButton a4 = new RadioButton("Four");
-    
+    Text questionText = new Text("Press next to continue"); // 420 MLG no scope blaze it
+    RadioButton a1 = new RadioButton("");
+    RadioButton a2 = new RadioButton("");
+    RadioButton a3 = new RadioButton("");
+    RadioButton a4 = new RadioButton("");
+    Label answerStatus= new Label("");
     ToggleGroup answerGroup = new ToggleGroup();
     VBox radioGroup = new VBox(5);
     VBox questionGroup = new VBox(10);
@@ -53,7 +54,7 @@ public class View extends Project{
         a4.setToggleGroup(answerGroup);
         radioGroup.getChildren().addAll(a1, a2, a3, a4);
 
-        questionGroup.getChildren().addAll(questionText, radioGroup);
+        questionGroup.getChildren().addAll(questionText, radioGroup, answerStatus);
         prevNext.getChildren().addAll(btnPrev, btnNext);
 
         pane.setTop(btnMenu);
@@ -69,6 +70,25 @@ public class View extends Project{
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
+        btnCheck.setOnAction(e -> {
+        	Boolean status;
+        	if (a1.isSelected()) {
+        		status = (questions.get(index).checkAnswer(a1.getText()));
+        	} else if (a2.isSelected()){
+        		status = (questions.get(index).checkAnswer(a2.getText()));
+        	} else if (a3.isSelected()){
+        		status = (questions.get(index).checkAnswer(a3.getText()));
+        	} else if (a4.isSelected()){
+        		status = (questions.get(index).checkAnswer(a4.getText()));
+        	} else {
+        		status = false;
+        	}
+        	if (status) {
+        		answerStatus.setText("The answer is correct");
+        	} else {
+        		answerStatus.setText("The answer is Incorrect");
+        	}
+        });
 		btnNext.setOnAction(e -> {
 			if (questions.size()>0) {
 				if (index < questions.size() - 1) {

@@ -23,11 +23,11 @@ public class Delete extends Project{
     Button btnPrev = new Button("Previous");
 	
     // Question stuff
-    Text questionText = new Text("Sample Text"); // 420 MLG no scope blaze it
-    RadioButton a1 = new RadioButton("One");
-    RadioButton a2 = new RadioButton("Two");
-    RadioButton a3 = new RadioButton("Three");
-    RadioButton a4 = new RadioButton("Four");
+    Text questionText = new Text("Press next to continue"); // 420 MLG no scope blaze it
+    RadioButton a1 = new RadioButton("");
+    RadioButton a2 = new RadioButton("");
+    RadioButton a3 = new RadioButton("");
+    RadioButton a4 = new RadioButton("");
 
     ToggleGroup answerGroup = new ToggleGroup();
     VBox radioGroup = new VBox(5);
@@ -99,14 +99,14 @@ public class Delete extends Project{
 			}
 		});
 		btnDelete.setOnAction(e -> {
-			if (questions.size()>1) {
-				if(questions.size()==2) {
+			if (questions.size()>0) {
+				if(questions.size()==1) {
 					questionText.setText("there are no questions, please return to the main menu");
 					a1.setText("removed");
 					a2.setText("removed");
 					a3.setText("removed");
 					a4.setText("removed");
-					questions.remove((questions.get(1)));
+					questions.remove((questions.get(0)));
 					System.out.println(questions);
 					System.out.println(questions.size());
 				
