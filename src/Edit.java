@@ -41,8 +41,6 @@ public class Edit extends Project {
     HBox b3 = new HBox(5);
     HBox b4 = new HBox(5);
     VBox questionGroup = new VBox(20);
-    
-    // Grouping next and previous buttons
     HBox options = new HBox(10);
 
     public Edit() {

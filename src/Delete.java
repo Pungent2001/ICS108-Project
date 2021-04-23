@@ -22,8 +22,8 @@ public class Delete extends Project {
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
 	
-    // Question stuff
-    Label questionText = new Label("Press next to continue"); // 420 MLG no scope blaze it
+    // Question nodes
+    Label questionText = new Label("Press next to continue");
     RadioButton a1 = new RadioButton("");
     RadioButton a2 = new RadioButton("");
     RadioButton a3 = new RadioButton("");
@@ -32,8 +32,6 @@ public class Delete extends Project {
     ToggleGroup answerGroup = new ToggleGroup();
     VBox radioGroup = new VBox(20);
     VBox questionGroup = new VBox(20);
-    
-    // Grouping next and previous buttons
     HBox options = new HBox(10);
 	
 	public Delete() {

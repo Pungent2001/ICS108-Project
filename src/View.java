@@ -22,18 +22,17 @@ public class View extends Project {
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
 
-    // Question stuff
+    // Question nodes
     Label questionText = new Label("Press next to continue");
     RadioButton a1 = new RadioButton("");
     RadioButton a2 = new RadioButton("");
     RadioButton a3 = new RadioButton("");
     RadioButton a4 = new RadioButton("");
     Label answerStatus= new Label("");
+    
     ToggleGroup answerGroup = new ToggleGroup();
     VBox radioGroup = new VBox(20);
     VBox questionGroup = new VBox(20);
-
-    // Grouping next and previous buttons
     HBox options = new HBox(10);
 
     public View() {
@@ -141,8 +140,6 @@ public class View extends Project {
 				a4.setText((questions.get(index).getAnswers())[3]);
 				
 				answerStatus.setText("");
-				
-				// Review this please
 				a1.setSelected(false);
 				a2.setSelected(false);
 				a3.setSelected(false);

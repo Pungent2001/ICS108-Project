@@ -73,12 +73,11 @@ public class Add extends Project {
         btnAdd.setTranslateY(-25);
         
         btnAdd.setOnAction(e->{
-//        	boolean questionIsNull = questionText == null && t1 == null && t2 == null && t3 == null && t4 == null;
         	boolean questionIsEmpty = clean(questionText).equals("") || clean(t1).equals("") || clean(t2).equals("") || clean(t3).equals("") || clean(t4).equals("");
         	
         	if (!(answerGroup.getSelectedToggle() == null) && !questionIsEmpty) {
             	String question = questionText.getText();
-            	String answer = ""; //Check later(if answers are bugged)
+            	String answer = "";
             	questionText.setText("");
             	String[] choices = {
             			t1.getText(), 
@@ -103,19 +102,12 @@ public class Add extends Project {
             	questions.add(new Question(question, choices, answer));
             	lblAddNotice.setText("Question added!");
             	lblAddNotice.setTextFill(Color.GREEN);
-            	System.out.println(questions);
-            	System.out.println(questions.size());
         	}
         	else {
         		lblAddNotice.setText("Please check your question contents!");
         		lblAddNotice.setTextFill(Color.RED);
         	}
-        	
-
 		});
         
-        
     }
-    
-
 }

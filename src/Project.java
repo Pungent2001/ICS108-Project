@@ -1,3 +1,5 @@
+// ICS108-02 Project - Created by: Ahmad Al-Ahmad (201969490) and Mohammed Al-Mohammedi (201971510)
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,7 +24,6 @@ public class Project extends Application implements Serializable {
 	 */
 	private static final long serialVersionUID = 352190495009038584L;
 	public static ArrayList<Question> questions;
-	//public static ArrayList<Question> questions = new ArrayList<Question>();
 	public void start(Stage primaryStage) {
         //
         // Window set-up
@@ -31,11 +32,8 @@ public class Project extends Application implements Serializable {
 			questions = new ArrayList<Question>();
 		}
 		primaryStage.setOnShown(e -> readBinary());
-		//String[] removed = {"1","2","3","4"};
-		//questions.add(new Question("Empty",removed,"1"));
-		//questions.add(new Question("Empty",removed,"2"));
         BorderPane mainPane = new BorderPane();
-        Scene mainScene = new Scene(mainPane, 525, 500); // Change the size later
+        Scene mainScene = new Scene(mainPane, 525, 500);
         primaryStage.setTitle("ICS108-02 Project");
         primaryStage.setScene(mainScene);
         primaryStage.show();
