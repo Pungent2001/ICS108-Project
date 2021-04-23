@@ -1,12 +1,14 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class Add extends Project{
     /**
@@ -17,6 +19,7 @@ public class Add extends Project{
     Scene scene = new Scene(pane, 525, 500);
     Button btnMenu = new Button("< Go back menu");
     Button btnAdd = new Button("Add question");
+    Label lblAddNotice = new Label();
 
     TextField questionText = new TextField();
     TextField t1 = new TextField();
@@ -53,7 +56,7 @@ public class Add extends Project{
         b3.getChildren().addAll(a3, t3);
         b4.getChildren().addAll(a4, t4);
 
-        questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4);
+        questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4, lblAddNotice);
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
@@ -64,33 +67,50 @@ public class Add extends Project{
         btnAdd.setTranslateY(-25);
         
         btnAdd.setOnAction(e->{
-        	String question = questionText.getText();
-        	String answer = ""; //Check later(if answers are bugged)
-        	questionText.setText("");
-        	String[] choices = {
-        			t1.getText(), 
-        			t2.getText(), 
-        			t3.getText(), 
-        			t4.getText()
-        			};
-        	if (a1.isSelected()) {
-        		answer = t1.getText();
-        	} else if(a2.isSelected()){
-        		answer = t2.getText();
-        	} else if(a3.isSelected()) {
-        		answer = t3.getText();
-        	} else if(a4.isSelected()) {
-        		answer = t4.getText();
+//        	boolean questionIsNull = questionText == null && t1 == null && t2 == null && t3 == null && t4 == null;
+        	boolean questionIsEmpty = clean(questionText) == "" || clean(t1) == "" || clean(t2) == "" || clean(t3) == "" || clean(t4) == "";
+        	if (!(answerGroup.getSelectedToggle() == null) && !questionIsEmpty) {
+            	String question = questionText.getText();
+            	String answer = ""; //Check later(if answers are bugged)
+            	questionText.setText("");
+            	String[] choices = {
+            			t1.getText(), 
+            			t2.getText(), 
+            			t3.getText(), 
+            			t4.getText()
+            			};
+            	if (a1.isSelected()) {
+            		answer = t1.getText();
+            	} else if(a2.isSelected()){
+            		answer = t2.getText();
+            	} else if(a3.isSelected()) {
+            		answer = t3.getText();
+            	} else if(a4.isSelected()) {
+            		answer = t4.getText();
+            	}
+            	answerGroup.getSelectedToggle().setSelected(false);
+            	t1.setText("");
+            	t2.setText("");
+            	t3.setText("");
+            	t4.setText("");
+            	questions.add(new Question(question, choices, answer));
+            	lblAddNotice.setText("Question added!");
+            	lblAddNotice.setTextFill(Color.GREEN);
+            	System.out.println(questions);
+            	System.out.println(questions.size());
         	}
-        	answerGroup.getSelectedToggle().setSelected(false);
-        	t1.setText("");
-        	t2.setText("");
-        	t3.setText("");
-        	t4.setText("");
-        	questions.add(new Question(question, choices, answer));
-        	System.out.println(questions);
-        	System.out.println(questions.size());
+        	else {
+        		lblAddNotice.setText("Please check your question contents!");
+        		lblAddNotice.setTextFill(Color.RED);
+        	}
+        	
+
 		});
         
+        
+    }
+    
+    public String clean(TextField tf) {
+    	return tf.getText().replace(" ", "");
     }
 }

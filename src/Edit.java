@@ -8,6 +8,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class Edit extends Project{
     /**
@@ -83,6 +84,7 @@ public class Edit extends Project{
         btnEdit.setOnAction(e -> {
         	String[] tempAnsArray = {t1.getText(), t2.getText(), t3.getText(), t4.getText()};
         	String correctAnswer = null;
+        	lblEditNotice.setTextFill(Color.GREEN);
         	
         	if (a1.isSelected()) {
         		correctAnswer = t1.getText();
@@ -91,22 +93,31 @@ public class Edit extends Project{
         	}
         	else if (a2.isSelected()) {
         		correctAnswer = t2.getText();
+        		lblEditNotice.setText("Question has been edited");
             	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
         	else if (a3.isSelected()) {
         		correctAnswer = t3.getText();
+        		lblEditNotice.setText("Question has been edited");
             	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
         	else if (a4.isSelected()) {
         		correctAnswer = t4.getText();
+        		lblEditNotice.setText("Question has been edited");
             	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
         	else {
         		lblEditNotice.setText("Please set a correct answer");
+        		lblEditNotice.setTextFill(Color.RED);
         	}
         });
 
 		btnNext.setOnAction(e -> {
+			a1.setSelected(false);
+			a2.setSelected(false);
+			a3.setSelected(false);
+			a4.setSelected(false);
+			
 			if (questions.size() > 0) {
 				if (index < questions.size() - 1) {
 					index++;
@@ -122,6 +133,11 @@ public class Edit extends Project{
 		});
 		
 		btnPrev.setOnAction(e -> {
+			a1.setSelected(false);
+			a2.setSelected(false);
+			a3.setSelected(false);
+			a4.setSelected(false);
+			
 			if (questions.size() > 0) {
 				if (index == 0) {
 					index = questions.size() - 1 ;

@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -16,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Project extends Application implements Serializable{
+public class Project extends Application implements Serializable {
 	/**
 	 * 
 	 */
@@ -89,12 +87,20 @@ public class Project extends Application implements Serializable{
         });
         (objAdd.btnMenu).setOnAction(e -> {
         	primaryStage.setScene(mainScene);
+        	objAdd.lblAddNotice.setText("");
+        	
         	objAdd.questionText.setText(null);
         	objAdd.t1.setText(null);
         	objAdd.t2.setText(null);
         	objAdd.t3.setText(null);
         	objAdd.t4.setText(null);
+        	
+			objAdd.a1.setSelected(false);
+			objAdd.a2.setSelected(false);
+			objAdd.a3.setSelected(false);
+			objAdd.a4.setSelected(false);
         });
+        
         (objDelete.btnMenu).setOnAction(e -> {
         	primaryStage.setScene(mainScene);
         });

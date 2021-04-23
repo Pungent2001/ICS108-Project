@@ -7,7 +7,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class Delete extends Project {
 	/**
@@ -16,7 +15,7 @@ public class Delete extends Project {
 	private static final long serialVersionUID = 1L;
 	Integer index = 0;
 	BorderPane pane = new BorderPane();
-	Scene scene = new Scene(pane, 450, 500);
+	Scene scene = new Scene(pane, 525, 500);
 	
 	Button btnMenu = new Button("< Go back menu");
     Button btnDelete = new Button("Delete question");

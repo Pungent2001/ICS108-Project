@@ -7,9 +7,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 
 public class View extends Project {
     /**
@@ -91,13 +89,16 @@ public class View extends Project {
             	}
             	if (status) {
             		answerStatus.setText("The answer is correct");
+            		answerStatus.setTextFill(Color.GREEN);
             	} else {
             		answerStatus.setText("The answer is Incorrect");
+            		answerStatus.setTextFill(Color.RED);
             	}
             	
         	}
         	else {
         		answerStatus.setText("Please select an answer to check");
+        		answerStatus.setTextFill(Color.RED);
         	}
         });
         
