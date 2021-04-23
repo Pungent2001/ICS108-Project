@@ -15,7 +15,7 @@ public class Add extends Project{
 	private static final long serialVersionUID = 1L;
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
-    Button btnMenu = new Button("Main menu");
+    Button btnMenu = new Button("< Go back menu");
     Button btnAdd = new Button("Add question");
 
     TextField questionText = new TextField();
@@ -34,10 +34,13 @@ public class Add extends Project{
     HBox b2 = new HBox(5);
     HBox b3 = new HBox(5);
     HBox b4 = new HBox(5);
+    HBox addGroup = new HBox();
     VBox questionGroup = new VBox(20);
 
     public Add() {
         pane.setTop(btnMenu);
+        
+        btnAdd.setPrefSize(150, 35);
 
         // Grouping radio buttons
         a1.setToggleGroup(answerGroup);
@@ -55,13 +58,14 @@ public class Add extends Project{
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
 
-        pane.setBottom(btnAdd);
-        btnAdd.setAlignment(Pos.BOTTOM_CENTER);
+        addGroup.getChildren().add(btnAdd);
+        pane.setBottom(addGroup);
+        addGroup.setAlignment(Pos.BOTTOM_CENTER);
         btnAdd.setTranslateY(-25);
         
         btnAdd.setOnAction(e->{
         	String question = questionText.getText();
-        	String answer = "";//Check later(if answers are bugged)
+        	String answer = ""; //Check later(if answers are bugged)
         	questionText.setText("");
         	String[] choices = {
         			t1.getText(), 

@@ -1,6 +1,7 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -15,15 +16,15 @@ public class Delete extends Project {
 	private static final long serialVersionUID = 1L;
 	Integer index = 0;
 	BorderPane pane = new BorderPane();
-	Scene scene = new Scene(pane, 525, 500);
+	Scene scene = new Scene(pane, 450, 500);
 	
-	Button btnMenu = new Button("Main menu");
+	Button btnMenu = new Button("< Go back menu");
     Button btnDelete = new Button("Delete question");
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
 	
     // Question stuff
-    Text questionText = new Text("Press next to continue"); // 420 MLG no scope blaze it
+    Label questionText = new Label("Press next to continue"); // 420 MLG no scope blaze it
     RadioButton a1 = new RadioButton("");
     RadioButton a2 = new RadioButton("");
     RadioButton a3 = new RadioButton("");
@@ -37,7 +38,14 @@ public class Delete extends Project {
     HBox options = new HBox(10);
 	
 	public Delete() {
-		if (questions.size()>1) {
+		questionText.setStyle("-fx-font-size: 18;");
+		
+		a1.setDisable(true);
+		a2.setDisable(true);
+		a3.setDisable(true);
+		a4.setDisable(true);
+		
+		if (questions.size() > 1) {
 		questionText.setText((questions.get(0).getQuestionText()));
 		a1.setText((questions.get(0).getAnswers())[0]);
 		a2.setText((questions.get(0).getAnswers())[1]);
@@ -47,7 +55,7 @@ public class Delete extends Project {
 		
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
-    	btnDelete.setPrefSize(200, 35);
+    	btnDelete.setPrefSize(150, 35);
 		
         // Grouping radio buttons
         a1.setToggleGroup(answerGroup);

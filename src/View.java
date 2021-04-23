@@ -7,6 +7,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 
 public class View extends Project {
@@ -17,13 +19,13 @@ public class View extends Project {
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Integer index = 0;
-    Button btnMenu = new Button("Main menu");
+    Button btnMenu = new Button("< Go back menu");
     Button btnCheck = new Button("Check answer");
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
 
     // Question stuff
-    Text questionText = new Text("Press next to continue");
+    Label questionText = new Label("Press next to continue");
     RadioButton a1 = new RadioButton("");
     RadioButton a2 = new RadioButton("");
     RadioButton a3 = new RadioButton("");
@@ -37,6 +39,8 @@ public class View extends Project {
     HBox options = new HBox(10);
 
     public View() {
+    	questionText.setStyle("-fx-font-size: 18px;");
+    	
     	if (questions.size() > 1) {
     		questionText.setText((questions.get(1).getQuestionText()));
     		a1.setText((questions.get(0).getAnswers())[0]);
@@ -46,7 +50,7 @@ public class View extends Project {
     	}
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
-    	btnCheck.setPrefSize(200, 35);
+    	btnCheck.setPrefSize(150, 35);
     	
         // Grouping radio buttons
         a1.setToggleGroup(answerGroup);
@@ -68,6 +72,7 @@ public class View extends Project {
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
+        
         
         btnCheck.setOnAction(e -> {
         	Boolean status;

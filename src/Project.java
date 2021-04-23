@@ -67,10 +67,37 @@ public class Project extends Application implements Serializable{
         options.setAlignment(Pos.CENTER);
 
         // Main menu button handler for each object's menu button
-        (objView.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
-        (objEdit.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
-        (objAdd.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
-        (objDelete.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
+        (objView.btnMenu).setOnAction(e -> {
+        	primaryStage.setScene(mainScene);
+			objView.answerStatus.setText("");
+			
+			objView.a1.setSelected(false);
+			objView.a2.setSelected(false);
+			objView.a3.setSelected(false);
+			objView.a4.setSelected(false);
+        	
+        });
+        (objEdit.btnMenu).setOnAction(e -> {
+        	primaryStage.setScene(mainScene);
+			objEdit.lblEditNotice.setText("");
+			
+			// Review this please
+			objEdit.a1.setSelected(false);
+			objEdit.a2.setSelected(false);
+			objEdit.a3.setSelected(false);
+			objEdit.a4.setSelected(false);
+        });
+        (objAdd.btnMenu).setOnAction(e -> {
+        	primaryStage.setScene(mainScene);
+        	objAdd.questionText.setText(null);
+        	objAdd.t1.setText(null);
+        	objAdd.t2.setText(null);
+        	objAdd.t3.setText(null);
+        	objAdd.t4.setText(null);
+        });
+        (objDelete.btnMenu).setOnAction(e -> {
+        	primaryStage.setScene(mainScene);
+        });
 
         // Handling mainScene buttons
         btnAdd.setOnAction(e -> primaryStage.setScene(objAdd.scene));

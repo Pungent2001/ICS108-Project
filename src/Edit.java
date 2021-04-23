@@ -1,6 +1,7 @@
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -16,10 +17,11 @@ public class Edit extends Project{
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Integer index = 0;
-    Button btnMenu = new Button("Main menu");
+    Button btnMenu = new Button("< Go back menu");
     Button btnEdit = new Button("Edit");
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
+    Label lblEditNotice = new Label("");
 
     TextField questionText = new TextField();
     TextField t1 = new TextField();
@@ -45,7 +47,7 @@ public class Edit extends Project{
     public Edit() {
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
-    	btnEdit.setPrefSize(200, 35);
+    	btnEdit.setPrefSize(150, 35);
     	
     	if (questions.size() > 1) {
     		questionText.setText(questions.get(0).getQuestionText());
@@ -69,7 +71,7 @@ public class Edit extends Project{
         
         options.getChildren().addAll(btnPrev, btnEdit, btnNext);
 
-        questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4);
+        questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4, lblEditNotice);
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
@@ -80,21 +82,28 @@ public class Edit extends Project{
         
         btnEdit.setOnAction(e -> {
         	String[] tempAnsArray = {t1.getText(), t2.getText(), t3.getText(), t4.getText()};
-        	String correctAnswer = "";
+        	String correctAnswer = null;
         	
         	if (a1.isSelected()) {
         		correctAnswer = t1.getText();
+        		lblEditNotice.setText("Question has been edited");
+            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
         	else if (a2.isSelected()) {
         		correctAnswer = t2.getText();
+            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
         	else if (a3.isSelected()) {
         		correctAnswer = t3.getText();
+            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
         	else if (a4.isSelected()) {
         		correctAnswer = t4.getText();
+            	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
         	}
-        	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+        	else {
+        		lblEditNotice.setText("Please set a correct answer");
+        	}
         });
 
 		btnNext.setOnAction(e -> {
