@@ -36,11 +36,13 @@ public class View extends Project{
     HBox prevNext = new HBox(10);
 
     public View() {
-    	questionText.setText((questions.get(1).getQuestionText()));
-		a1.setText((questions.get(1).getAnswers())[0]);
-		a2.setText((questions.get(1).getAnswers())[1]);
-		a3.setText((questions.get(1).getAnswers())[2]);
-		a4.setText((questions.get(1).getAnswers())[3]);
+    	if (questions.size()>1) {
+    		questionText.setText((questions.get(1).getQuestionText()));
+    		a1.setText((questions.get(0).getAnswers())[0]);
+    		a2.setText((questions.get(0).getAnswers())[1]);
+    		a3.setText((questions.get(0).getAnswers())[2]);
+    		a4.setText((questions.get(0).getAnswers())[3]);
+    	}
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
     	
@@ -68,7 +70,7 @@ public class View extends Project{
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
 		btnNext.setOnAction(e -> {
-			if (questions.size()>1) {
+			if (questions.size()>0) {
 				if (index < questions.size() - 1) {
 					index++;
 					questionText.setText((questions.get(index).getQuestionText()));
@@ -77,7 +79,7 @@ public class View extends Project{
 					a3.setText((questions.get(index).getAnswers())[2]);
 					a4.setText((questions.get(index).getAnswers())[3]);
 				} else {
-					index = 1;
+					index = 0;
 					questionText.setText((questions.get(index).getQuestionText()));
 					a1.setText((questions.get(index).getAnswers())[0]);
 					a2.setText((questions.get(index).getAnswers())[1]);
@@ -88,8 +90,8 @@ public class View extends Project{
 			
 		});
 		btnPrev.setOnAction(e -> {
-			if (questions.size()>1) {
-				if (index == 1) {
+			if (questions.size()>0) {
+				if (index == 0) {
 					index = questions.size() - 1 ;
 					questionText.setText((questions.get(index).getQuestionText()));
 					a1.setText((questions.get(index).getAnswers())[0]);

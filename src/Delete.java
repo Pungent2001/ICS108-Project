@@ -37,11 +37,13 @@ public class Delete extends Project{
     HBox prevNext = new HBox(10);
 	
 	public Delete() {
-		questionText.setText((questions.get(1).getQuestionText()));
-		a1.setText((questions.get(1).getAnswers())[0]);
-		a2.setText((questions.get(1).getAnswers())[1]);
-		a3.setText((questions.get(1).getAnswers())[2]);
-		a4.setText((questions.get(1).getAnswers())[3]);
+		if (questions.size()>1) {
+		questionText.setText((questions.get(0).getQuestionText()));
+		a1.setText((questions.get(0).getAnswers())[0]);
+		a2.setText((questions.get(0).getAnswers())[1]);
+		a3.setText((questions.get(0).getAnswers())[2]);
+		a4.setText((questions.get(0).getAnswers())[3]);
+		}
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
 		
@@ -58,7 +60,7 @@ public class Delete extends Project{
 		pane.setTop(btnMenu);
 		btnMenu.setAlignment(Pos.TOP_LEFT);
 		btnNext.setOnAction(e -> {
-			if (questions.size()>1) {
+			if (questions.size()>0) {
 				if (index < questions.size() - 1) {
 					index++;
 					questionText.setText((questions.get(index).getQuestionText()));
@@ -67,7 +69,7 @@ public class Delete extends Project{
 					a3.setText((questions.get(index).getAnswers())[2]);
 					a4.setText((questions.get(index).getAnswers())[3]);
 				} else {
-					index = 1;
+					index = 0;
 					questionText.setText((questions.get(index).getQuestionText()));
 					a1.setText((questions.get(index).getAnswers())[0]);
 					a2.setText((questions.get(index).getAnswers())[1]);
@@ -78,8 +80,8 @@ public class Delete extends Project{
 			
 		});
 		btnPrev.setOnAction(e -> {
-			if (questions.size()>1) {
-				if (index == 1) {
+			if (questions.size()>0) {
+				if (index == 0) {
 					index = questions.size() - 1 ;
 					questionText.setText((questions.get(index).getQuestionText()));
 					a1.setText((questions.get(index).getAnswers())[0]);
@@ -110,7 +112,7 @@ public class Delete extends Project{
 				
 				}else {
 					questions.remove((questions.get(index)));
-					index = 1;
+					index = 0;
 					questionText.setText((questions.get(index).getQuestionText()));
 					a1.setText((questions.get(index).getAnswers())[0]);
 					a2.setText((questions.get(index).getAnswers())[1]);

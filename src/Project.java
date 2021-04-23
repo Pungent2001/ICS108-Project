@@ -72,21 +72,21 @@ public class Project extends Application implements Serializable{
         // Handling mainScene buttons
         btnAdd.setOnAction(e -> primaryStage.setScene(objAdd.scene));
         btnView.setOnAction(e -> {
-        	if (questions.size() > 1) {
+        	if (questions.size() > 0) {
         		primaryStage.setScene(objView.scene);
         	}else {
         		errorTxt.setText("There are no questions to delete.\nplease Add a new question.");
         		}
         });
         btnEdit.setOnAction(e -> {
-        	if (questions.size() > 1) {
+        	if (questions.size() > 0) {
         		primaryStage.setScene(objEdit.scene);
         	}else {
     		errorTxt.setText("There are no questions to delete.\nplease Add a new question.");
     			}
         });
         btnDelete.setOnAction(e -> {
-        	if (questions.size() > 1) {
+        	if (questions.size() > 0) {
         		primaryStage.setScene(objDelete.scene);
         	}else {
         		errorTxt.setText("There are no questions to delete.\nplease Add a new question.");
