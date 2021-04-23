@@ -8,10 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class View {
-    BorderPane pane = new BorderPane();
+public class View extends Project{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
-
+    Integer index = 0;
     Button btnMenu = new Button("Main menu");
     Button btnCheck = new Button("Check answer");
     Button btnNext = new Button("Next");
@@ -23,7 +27,7 @@ public class View {
     RadioButton a2 = new RadioButton("Two");
     RadioButton a3 = new RadioButton("Three");
     RadioButton a4 = new RadioButton("Four");
-
+    
     ToggleGroup answerGroup = new ToggleGroup();
     VBox radioGroup = new VBox(5);
     VBox questionGroup = new VBox(10);
@@ -32,6 +36,11 @@ public class View {
     HBox prevNext = new HBox(10);
 
     public View() {
+    	questionText.setText((questions.get(1).getQuestionText()));
+		a1.setText((questions.get(1).getAnswers())[0]);
+		a2.setText((questions.get(1).getAnswers())[1]);
+		a3.setText((questions.get(1).getAnswers())[2]);
+		a4.setText((questions.get(1).getAnswers())[3]);
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
     	
@@ -58,5 +67,44 @@ public class View {
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
+		btnNext.setOnAction(e -> {
+			if (questions.size()>1) {
+				if (index < questions.size() - 1) {
+					index++;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				} else {
+					index = 1;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				}
+			}
+			
+		});
+		btnPrev.setOnAction(e -> {
+			if (questions.size()>1) {
+				if (index == 1) {
+					index = questions.size() - 1 ;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				} else {
+					index--;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				}
+			}
+		});
     }
 }

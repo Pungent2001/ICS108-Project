@@ -22,20 +22,15 @@ public class Project extends Application implements Serializable{
 	 */
 	private static final long serialVersionUID = 352190495009038584L;
 	public static ArrayList<Question> questions;
+	//public static ArrayList<Question> questions = new ArrayList<Question>();
 	public void start(Stage primaryStage) {
         //
         // Window set-up
         //
-		try {
-            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream("QuestionBank.dat"));
-            String[] ee = {"1","2","3","4"};
-            questions.add(new Question("ass",ee,"hello"));
-            writer.writeObject(questions);
-            writer.close();
-        }catch(Exception e) {
-        }    
-		primaryStage.setOnShowing(e -> readBinary());
-		
+		primaryStage.setOnShown(e -> readBinary());
+		//String[] removed = {"1","2","3","4"};
+		//questions.add(new Question("Empty",removed,"1"));
+		//questions.add(new Question("Empty",removed,"2"));
         BorderPane mainPane = new BorderPane();
         Scene mainScene = new Scene(mainPane, 525, 500); // Change the size later
         primaryStage.setTitle("ICS108 Project");
@@ -75,15 +70,27 @@ public class Project extends Application implements Serializable{
         (objDelete.btnMenu).setOnAction(e -> primaryStage.setScene(mainScene));
 
         // Handling mainScene buttons
-        btnView.setOnAction(e -> primaryStage.setScene(objView.scene));
-        btnEdit.setOnAction(e -> primaryStage.setScene(objEdit.scene));
         btnAdd.setOnAction(e -> primaryStage.setScene(objAdd.scene));
+        btnView.setOnAction(e -> {
+        	if (questions.size() > 1) {
+        		primaryStage.setScene(objView.scene);
+        	}else {
+        		errorTxt.setText("There are no questions to delete.\nplease Add a new question.");
+        		}
+        });
+        btnEdit.setOnAction(e -> {
+        	if (questions.size() > 1) {
+        		primaryStage.setScene(objEdit.scene);
+        	}else {
+    		errorTxt.setText("There are no questions to delete.\nplease Add a new question.");
+    			}
+        });
         btnDelete.setOnAction(e -> {
-        	if (questions.size() == 0) {
-        	primaryStage.setScene(objDelete.scene);}
-        	else {
-        		errorTxt.setText("There are no questions to delete.");
-        	}
+        	if (questions.size() > 1) {
+        		primaryStage.setScene(objDelete.scene);
+        	}else {
+        		errorTxt.setText("There are no questions to delete.\nplease Add a new question.");
+        		}
         	});
         
         primaryStage.setOnCloseRequest(e -> {
@@ -93,7 +100,8 @@ public class Project extends Application implements Serializable{
        
     }
 	
-    public void readBinary() {
+    @SuppressWarnings("unchecked")
+	public void readBinary() {
         try {
              FileInputStream fileInputStream = new FileInputStream("QuestionBank.dat");
              ObjectInputStream objStream = new ObjectInputStream(fileInputStream);

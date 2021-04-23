@@ -9,6 +9,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class Delete extends Project{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Integer index = 0;
 	BorderPane pane = new BorderPane();
 	Scene scene = new Scene(pane, 525, 500);
@@ -33,11 +37,11 @@ public class Delete extends Project{
     HBox prevNext = new HBox(10);
 	
 	public Delete() {
-		questionText.setText((questions.get(index).getQuestionText()));
-		a1.setText((questions.get(0).getAnswers())[0]);
-		a2.setText((questions.get(0).getAnswers())[1]);
-		a3.setText((questions.get(0).getAnswers())[2]);
-		a4.setText((questions.get(0).getAnswers())[3]);
+		questionText.setText((questions.get(1).getQuestionText()));
+		a1.setText((questions.get(1).getAnswers())[0]);
+		a2.setText((questions.get(1).getAnswers())[1]);
+		a3.setText((questions.get(1).getAnswers())[2]);
+		a4.setText((questions.get(1).getAnswers())[3]);
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
 		
@@ -54,49 +58,68 @@ public class Delete extends Project{
 		pane.setTop(btnMenu);
 		btnMenu.setAlignment(Pos.TOP_LEFT);
 		btnNext.setOnAction(e -> {
-			if (index < questions.size() - 1) {
-				index++;
-				questionText.setText((questions.get(index).getQuestionText()));
-				a1.setText((questions.get(index).getAnswers())[0]);
-				a2.setText((questions.get(index).getAnswers())[1]);
-				a3.setText((questions.get(index).getAnswers())[2]);
-				a4.setText((questions.get(index).getAnswers())[3]);
-			} else {
-				index = 0;
-				questionText.setText((questions.get(index).getQuestionText()));
-				a1.setText((questions.get(index).getAnswers())[0]);
-				a2.setText((questions.get(index).getAnswers())[1]);
-				a3.setText((questions.get(index).getAnswers())[2]);
-				a4.setText((questions.get(index).getAnswers())[3]);
+			if (questions.size()>1) {
+				if (index < questions.size() - 1) {
+					index++;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				} else {
+					index = 1;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				}
 			}
 			
 		});
 		btnPrev.setOnAction(e -> {
-			if (index == 0) {
-				index = questions.size() - 1 ;
-				questionText.setText((questions.get(index).getQuestionText()));
-				a1.setText((questions.get(index).getAnswers())[0]);
-				a2.setText((questions.get(index).getAnswers())[1]);
-				a3.setText((questions.get(index).getAnswers())[2]);
-				a4.setText((questions.get(index).getAnswers())[3]);
-			} else {
-				index--;
-				questionText.setText((questions.get(index).getQuestionText()));
-				a1.setText((questions.get(index).getAnswers())[0]);
-				a2.setText((questions.get(index).getAnswers())[1]);
-				a3.setText((questions.get(index).getAnswers())[2]);
-				a4.setText((questions.get(index).getAnswers())[3]);
+			if (questions.size()>1) {
+				if (index == 1) {
+					index = questions.size() - 1 ;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				} else {
+					index--;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+				}
 			}
 		});
 		btnDelete.setOnAction(e -> {
-			questions.remove((questions.get(index)));
-			index = 0;
-			questionText.setText((questions.get(index).getQuestionText()));
-			a1.setText((questions.get(index).getAnswers())[0]);
-			a2.setText((questions.get(index).getAnswers())[1]);
-			a3.setText((questions.get(index).getAnswers())[2]);
-			a4.setText((questions.get(index).getAnswers())[3]);
-			
+			if (questions.size()>1) {
+				if(questions.size()==2) {
+					questionText.setText("there are no questions, please return to the main menu");
+					a1.setText("removed");
+					a2.setText("removed");
+					a3.setText("removed");
+					a4.setText("removed");
+					questions.remove((questions.get(1)));
+					System.out.println(questions);
+					System.out.println(questions.size());
+				
+				}else {
+					questions.remove((questions.get(index)));
+					index = 1;
+					questionText.setText((questions.get(index).getQuestionText()));
+					a1.setText((questions.get(index).getAnswers())[0]);
+					a2.setText((questions.get(index).getAnswers())[1]);
+					a3.setText((questions.get(index).getAnswers())[2]);
+					a4.setText((questions.get(index).getAnswers())[3]);
+					System.out.println(questions);
+					System.out.println(questions.size());
+				}
+			}
 		});
 		
         pane.setBottom(prevNext);

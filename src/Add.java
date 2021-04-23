@@ -1,8 +1,3 @@
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +9,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Add extends Project{
-    BorderPane pane = new BorderPane();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Button btnMenu = new Button("Main menu");
     Button btnAdd = new Button("Add question");
@@ -84,6 +83,7 @@ public class Add extends Project{
         	t4.setText("");
         	questions.add(new Question(question, choices, answer));
         	System.out.println(questions);
+        	System.out.println(questions.size());
 		});
         
     }
