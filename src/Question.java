@@ -6,9 +6,9 @@ public class Question implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 2560824236771284773L;
-	String qText;
-    String[] answers = new String[4];
-    String correctAnswer;
+	private String qText;
+	private String[] answers = new String[4];
+	private String correctAnswer;
 
     public Question(String qText, String[] answers, String correctAnswer) {
         this.qText = qText;
