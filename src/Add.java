@@ -68,7 +68,8 @@ public class Add extends Project{
         
         btnAdd.setOnAction(e->{
 //        	boolean questionIsNull = questionText == null && t1 == null && t2 == null && t3 == null && t4 == null;
-        	boolean questionIsEmpty = clean(questionText) == "" || clean(t1) == "" || clean(t2) == "" || clean(t3) == "" || clean(t4) == "";
+        	boolean questionIsEmpty = clean(questionText).equals("") || clean(t1).equals("") || clean(t2).equals("") || clean(t3).equals("") || clean(t4).equals("");
+        	
         	if (!(answerGroup.getSelectedToggle() == null) && !questionIsEmpty) {
             	String question = questionText.getText();
             	String answer = ""; //Check later(if answers are bugged)
