@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class Delete extends Project{
+public class Delete extends Project {
 	/**
 	 * 
 	 */
@@ -34,7 +34,7 @@ public class Delete extends Project{
     VBox questionGroup = new VBox(10);
     
     // Grouping next and previous buttons
-    HBox prevNext = new HBox(10);
+    HBox options = new HBox(10);
 	
 	public Delete() {
 		if (questions.size()>1) {
@@ -44,8 +44,10 @@ public class Delete extends Project{
 		a3.setText((questions.get(0).getAnswers())[2]);
 		a4.setText((questions.get(0).getAnswers())[3]);
 		}
+		
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
+    	btnDelete.setPrefSize(200, 35);
 		
         // Grouping radio buttons
         a1.setToggleGroup(answerGroup);
@@ -55,7 +57,7 @@ public class Delete extends Project{
         radioGroup.getChildren().addAll(a1, a2, a3, a4);
 
         questionGroup.getChildren().addAll(questionText, radioGroup);
-        prevNext.getChildren().addAll(btnPrev, btnDelete,  btnNext);
+        options.getChildren().addAll(btnPrev, btnDelete,  btnNext);
 		
 		pane.setTop(btnMenu);
 		btnMenu.setAlignment(Pos.TOP_LEFT);
@@ -63,41 +65,35 @@ public class Delete extends Project{
 			if (questions.size()>0) {
 				if (index < questions.size() - 1) {
 					index++;
-					questionText.setText((questions.get(index).getQuestionText()));
-					a1.setText((questions.get(index).getAnswers())[0]);
-					a2.setText((questions.get(index).getAnswers())[1]);
-					a3.setText((questions.get(index).getAnswers())[2]);
-					a4.setText((questions.get(index).getAnswers())[3]);
 				} else {
 					index = 0;
-					questionText.setText((questions.get(index).getQuestionText()));
-					a1.setText((questions.get(index).getAnswers())[0]);
-					a2.setText((questions.get(index).getAnswers())[1]);
-					a3.setText((questions.get(index).getAnswers())[2]);
-					a4.setText((questions.get(index).getAnswers())[3]);
 				}
+				
+				questionText.setText((questions.get(index).getQuestionText()));
+				a1.setText((questions.get(index).getAnswers())[0]);
+				a2.setText((questions.get(index).getAnswers())[1]);
+				a3.setText((questions.get(index).getAnswers())[2]);
+				a4.setText((questions.get(index).getAnswers())[3]);
 			}
 			
 		});
+		
 		btnPrev.setOnAction(e -> {
 			if (questions.size()>0) {
 				if (index == 0) {
 					index = questions.size() - 1 ;
-					questionText.setText((questions.get(index).getQuestionText()));
-					a1.setText((questions.get(index).getAnswers())[0]);
-					a2.setText((questions.get(index).getAnswers())[1]);
-					a3.setText((questions.get(index).getAnswers())[2]);
-					a4.setText((questions.get(index).getAnswers())[3]);
 				} else {
 					index--;
-					questionText.setText((questions.get(index).getQuestionText()));
-					a1.setText((questions.get(index).getAnswers())[0]);
-					a2.setText((questions.get(index).getAnswers())[1]);
-					a3.setText((questions.get(index).getAnswers())[2]);
-					a4.setText((questions.get(index).getAnswers())[3]);
 				}
+				
+				questionText.setText((questions.get(index).getQuestionText()));
+				a1.setText((questions.get(index).getAnswers())[0]);
+				a2.setText((questions.get(index).getAnswers())[1]);
+				a3.setText((questions.get(index).getAnswers())[2]);
+				a4.setText((questions.get(index).getAnswers())[3]);
 			}
 		});
+		
 		btnDelete.setOnAction(e -> {
 			if (questions.size()>0) {
 				if(questions.size()==1) {
@@ -124,9 +120,9 @@ public class Delete extends Project{
 			}
 		});
 		
-        pane.setBottom(prevNext);
-        prevNext.setAlignment(Pos.BOTTOM_CENTER);
-        prevNext.setTranslateY(-25);
+        pane.setBottom(options);
+        options.setAlignment(Pos.BOTTOM_CENTER);
+        options.setTranslateY(-25);
         
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);

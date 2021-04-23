@@ -15,9 +15,11 @@ public class Edit extends Project{
 	private static final long serialVersionUID = 1L;
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
-    Button btnMenu = new Button("Main menu");
     Integer index = 0;
+    Button btnMenu = new Button("Main menu");
     Button btnEdit = new Button("Edit");
+    Button btnNext = new Button("Next");
+    Button btnPrev = new Button("Previous");
 
     TextField questionText = new TextField();
     TextField t1 = new TextField();
@@ -36,16 +38,23 @@ public class Edit extends Project{
     HBox b3 = new HBox(5);
     HBox b4 = new HBox(5);
     VBox questionGroup = new VBox(20);
+    
+    // Grouping next and previous buttons
+    HBox options = new HBox(10);
 
     public Edit() {
-    	if (questions.size()>1) {
+    	btnNext.setPrefSize(100, 35);
+    	btnPrev.setPrefSize(100, 35);
+    	btnEdit.setPrefSize(200, 35);
+    	
+    	if (questions.size() > 1) {
     		questionText.setText(questions.get(0).getQuestionText());
     		t1.setText((questions.get(0).getAnswers())[0]);
     		t2.setText((questions.get(0).getAnswers())[1]);
     		t3.setText((questions.get(0).getAnswers())[2]);
     		t4.setText((questions.get(0).getAnswers())[3]);
     	}
-        pane.setBottom(btnMenu);
+        pane.setTop(btnMenu);
 
         // Grouping radio buttons
         a1.setToggleGroup(answerGroup);
@@ -57,16 +66,67 @@ public class Edit extends Project{
         b2.getChildren().addAll(a2, t2);
         b3.getChildren().addAll(a3, t3);
         b4.getChildren().addAll(a4, t4);
+        
+        options.getChildren().addAll(btnPrev, btnEdit, btnNext);
 
         questionGroup.getChildren().addAll(questionText, b1, b2, b3, b4);
         pane.setLeft(questionGroup);
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
+        
+        pane.setBottom(options);
+        options.setAlignment(Pos.BOTTOM_CENTER);
+        options.setTranslateY(-25);
+        
+        btnEdit.setOnAction(e -> {
+        	String[] tempAnsArray = {t1.getText(), t2.getText(), t3.getText(), t4.getText()};
+        	String correctAnswer = "";
+        	
+        	if (a1.isSelected()) {
+        		correctAnswer = t1.getText();
+        	}
+        	else if (a2.isSelected()) {
+        		correctAnswer = t2.getText();
+        	}
+        	else if (a3.isSelected()) {
+        		correctAnswer = t3.getText();
+        	}
+        	else if (a4.isSelected()) {
+        		correctAnswer = t4.getText();
+        	}
+        	questions.get(index).edit(questionText.getText(), tempAnsArray, correctAnswer);
+        });
 
-        pane.setRight(btnEdit);
-        btnEdit.setAlignment(Pos.CENTER_RIGHT);
-
-
+		btnNext.setOnAction(e -> {
+			if (questions.size() > 0) {
+				if (index < questions.size() - 1) {
+					index++;
+				} else {
+					index = 0;
+				}
+			}
+			questionText.setText((questions.get(index).getQuestionText()));
+			t1.setText((questions.get(index).getAnswers())[0]);
+			t2.setText((questions.get(index).getAnswers())[1]);
+			t3.setText((questions.get(index).getAnswers())[2]);
+			t4.setText((questions.get(index).getAnswers())[3]);
+		});
+		
+		btnPrev.setOnAction(e -> {
+			if (questions.size() > 0) {
+				if (index == 0) {
+					index = questions.size() - 1 ;
+				} else {
+					index--;
+				}
+			}
+			
+			questionText.setText((questions.get(index).getQuestionText()));
+			t1.setText((questions.get(index).getAnswers())[0]);
+			t2.setText((questions.get(index).getAnswers())[1]);
+			t3.setText((questions.get(index).getAnswers())[2]);
+			t4.setText((questions.get(index).getAnswers())[3]);
+		});
 
     }
 

@@ -37,7 +37,7 @@ public class Add extends Project{
     VBox questionGroup = new VBox(20);
 
     public Add() {
-        pane.setBottom(btnMenu);
+        pane.setTop(btnMenu);
 
         // Grouping radio buttons
         a1.setToggleGroup(answerGroup);
@@ -55,8 +55,10 @@ public class Add extends Project{
         questionGroup.setAlignment(Pos.CENTER_LEFT);
         questionGroup.setTranslateX(50);
 
-        pane.setRight(btnAdd);
-        btnAdd.setAlignment(Pos.CENTER_RIGHT);
+        pane.setBottom(btnAdd);
+        btnAdd.setAlignment(Pos.BOTTOM_CENTER);
+        btnAdd.setTranslateY(-25);
+        
         btnAdd.setOnAction(e->{
         	String question = questionText.getText();
         	String answer = "";//Check later(if answers are bugged)
