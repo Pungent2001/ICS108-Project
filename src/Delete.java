@@ -17,7 +17,7 @@ public class Delete extends Project {
 	BorderPane pane = new BorderPane();
 	Scene scene = new Scene(pane, 525, 500);
 	
-	Button btnMenu = new Button("< Go back menu");
+	Button btnMenu = new Button("< Back to menu");
     Button btnDelete = new Button("Delete question");
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
@@ -30,8 +30,8 @@ public class Delete extends Project {
     RadioButton a4 = new RadioButton("");
 
     ToggleGroup answerGroup = new ToggleGroup();
-    VBox radioGroup = new VBox(5);
-    VBox questionGroup = new VBox(10);
+    VBox radioGroup = new VBox(20);
+    VBox questionGroup = new VBox(20);
     
     // Grouping next and previous buttons
     HBox options = new HBox(10);

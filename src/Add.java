@@ -17,7 +17,7 @@ public class Add extends Project{
 	private static final long serialVersionUID = 1L;
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
-    Button btnMenu = new Button("< Go back menu");
+    Button btnMenu = new Button("< Back to menu");
     Button btnAdd = new Button("Add question");
     Label lblAddNotice = new Label();
 
@@ -41,6 +41,12 @@ public class Add extends Project{
     VBox questionGroup = new VBox(20);
 
     public Add() {
+    	questionText.setPrefWidth(400);
+    	t1.setPrefWidth(400);
+    	t2.setPrefWidth(400);
+    	t3.setPrefWidth(400);
+    	t4.setPrefWidth(400);
+    	
         pane.setTop(btnMenu);
         
         btnAdd.setPrefSize(150, 35);

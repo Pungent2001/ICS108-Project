@@ -18,7 +18,7 @@ public class Edit extends Project{
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Integer index = 0;
-    Button btnMenu = new Button("< Go back menu");
+    Button btnMenu = new Button("< Back to menu");
     Button btnEdit = new Button("Edit");
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
@@ -49,6 +49,11 @@ public class Edit extends Project{
     	btnNext.setPrefSize(100, 35);
     	btnPrev.setPrefSize(100, 35);
     	btnEdit.setPrefSize(150, 35);
+    	questionText.setPrefWidth(400);
+    	t1.setPrefWidth(400);
+    	t2.setPrefWidth(400);
+    	t3.setPrefWidth(400);
+    	t4.setPrefWidth(400);
     	
     	if (questions.size() > 1) {
     		questionText.setText(questions.get(0).getQuestionText());

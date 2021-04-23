@@ -17,7 +17,7 @@ public class View extends Project {
 	BorderPane pane = new BorderPane();
     Scene scene = new Scene(pane, 525, 500);
     Integer index = 0;
-    Button btnMenu = new Button("< Go back menu");
+    Button btnMenu = new Button("< Back to menu");
     Button btnCheck = new Button("Check answer");
     Button btnNext = new Button("Next");
     Button btnPrev = new Button("Previous");
@@ -30,8 +30,8 @@ public class View extends Project {
     RadioButton a4 = new RadioButton("");
     Label answerStatus= new Label("");
     ToggleGroup answerGroup = new ToggleGroup();
-    VBox radioGroup = new VBox(5);
-    VBox questionGroup = new VBox(10);
+    VBox radioGroup = new VBox(20);
+    VBox questionGroup = new VBox(20);
 
     // Grouping next and previous buttons
     HBox options = new HBox(10);

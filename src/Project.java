@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class Project extends Application implements Serializable {
@@ -34,7 +35,7 @@ public class Project extends Application implements Serializable {
 		//questions.add(new Question("Empty",removed,"2"));
         BorderPane mainPane = new BorderPane();
         Scene mainScene = new Scene(mainPane, 525, 500); // Change the size later
-        primaryStage.setTitle("ICS108 Project");
+        primaryStage.setTitle("ICS108-02 Project");
         primaryStage.setScene(mainScene);
         primaryStage.show();
 
@@ -45,7 +46,9 @@ public class Project extends Application implements Serializable {
         Delete objDelete = new Delete();
         
         //Creating nodes
+        Label projectInfo = new Label("ICS108-02 Project\n Created by:\n Ahmad Al-Ahmad (201969490)\n Mohammed Al-Mohammedi (201971510)");
         Label errorTxt = new Label();
+        projectInfo.setTextAlignment(TextAlignment.CENTER);
 
         // Buttons
         Button btnView = new Button("View a question");
@@ -59,7 +62,7 @@ public class Project extends Application implements Serializable {
 
         // Grouping
         VBox options = new VBox(10);
-        options.getChildren().addAll(btnView, btnEdit, btnAdd, btnDelete, errorTxt);
+        options.getChildren().addAll(projectInfo, btnView, btnEdit, btnAdd, btnDelete, errorTxt);
 
         mainPane.setCenter(options);
         options.setAlignment(Pos.CENTER);
